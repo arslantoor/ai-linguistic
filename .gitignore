@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+/migrations/
 # Logs and databases
 *.log
 *.sqlite3
@@ -17,6 +17,7 @@ node_modules/
 
 # Media files
 /media/
+/static/
 
 # Other
 *.swp
