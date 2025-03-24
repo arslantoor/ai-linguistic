@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% load socialaccount %}
+
+{% block content %}
+    <h2>Sign in</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Sign in"/>
+    </form>
+
+    <form method="get" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <input type="submit" value="Sign Up"/>
+    </form>
+
+    <form method="get" action="{% url 'password_reset' %}">
+        {% csrf_token %}
+        <input type="submit" value="Forgot Password"/>
+    </form>
+
+    <form action="{% provider_login_url 'google' action='reauthenticate' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Sign In With Google"/>
+    </form>
+{% endblock %}

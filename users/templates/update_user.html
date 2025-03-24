@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% load socialaccount %}
+
+{% block content %}
+    <h2>Update User</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h5>{{ object.email }}</h5>
+        {{ form.as_p }}
+        <input type="submit" value="Update"/>
+    </form>
+{% endblock %}

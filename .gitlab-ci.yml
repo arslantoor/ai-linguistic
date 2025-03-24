@@ -1,0 +1,24 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  tags:
+    - whitelabel
+  script:
+    # Connecting to the server and running commands
+    - ssh -o StrictHostKeyChecking=no ubuntu@10.10.6.15 "
+        cd /home/whitelabel/white_label &&
+        sudo -u whitelabel ssh-agent bash -c 'ssh-add /home/whitelabel/.ssh/github/white_label_be; git pull' &&
+        sudo supervisorctl stop all &&
+        sudo chown -R ubuntu:ubuntu /home/whitelabel/white_label /home/whitelabel/logs.log &&
+        source /home/whitelabel/white_label_venv/bin/activate &&
+        pip install -r requirements.txt &&
+        python manage.py migrate &&
+        python manage.py collectstatic --noinput -i node_modules &&
+        deactivate &&
+        sudo chown -R whitelabel:whitelabel /home/whitelabel/white_label /home/whitelabel/logs.log &&
+        sudo supervisorctl start all
+      "
+  only:
+    - main

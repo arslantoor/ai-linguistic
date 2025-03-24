@@ -1,0 +1,5 @@
+# Configuration file for pydocstyle.
+
+[pydocstyle]
+match_dir = ^(?!venv|.*migrations|__init__.py).+$
+add-ignore = D104,D401,D106

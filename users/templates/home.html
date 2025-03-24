@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <h2>Authenticated Home Page</h2>
+    <h5>Welcome to White Label.</h5>
+    {% if not request.user.is_active %}
+        <h4>You have logged in with an inactive account. Please check your email to activate your account or click on the button below to resend activation email</h4>
+        <form method="get" action="{% url 'send-activation-email' %}">
+            {% csrf_token %}
+            <input type="submit" value="Resend Activation Email"/>
+        </form>
+    {% elif not request.user.profile.has_signed_all_terms %}
+        <h4>You have not signed all agreements!</h4>
+        <a class="btn" href="{% url 'agreements' %}">Sign Agreements</a>
+    {% else %}
+        <div><a class="btn" href="{% url 'product-checkout' %}">Purchase a product</a></div>
+        <div><a class="btn" href="{% url 'package-checkout' %}">Subscribe to a Package</a></div>
+    {% endif %}
+    <a class="btn" href="{% url 'contact-us' %}">Contact Us</a>
+{% endblock %}
