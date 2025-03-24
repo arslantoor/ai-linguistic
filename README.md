@@ -82,17 +82,17 @@ This is a **Django REST Framework (DRF)** boilerplate for building scalable and 
 ## ⚙️ Installation & Setup
 ### 1️⃣ Clone the Repository
 ```bash
-git clone <repo_url>
-cd <project_name>
+git clone git@github.com:arslantoor/ai-linguistic.git
+cd ai-linguistic
 ```
 ### 2️⃣ Create & Activate Virtual Environment
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -g poetry
+poetry init
 ```
 ### 3️⃣ Install Dependencies
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 ### 4️⃣ Set Up Environment Variables
 Create a **`.env`** file in the project root and add:
@@ -108,18 +108,18 @@ DEBUG=True
 
 ### 5️⃣ Run Migrations
 ```bash
-python manage.py makemigrations accounts
-python manage.py migrate
+poetry run python manage.py makemigrations accounts
+poetry run python manage.py migrate
 ```
 
 ### 6️⃣ Create a Superuser
 ```bash
-python manage.py createsuperuser
+poetry run python manage.py createsuperuser
 ```
 
 ### 7️⃣ Start the Development Server
 ```bash
-python manage.py runserver
+poetry run python manage.py runserver
 ```
 
 ## 🔐 Authentication
@@ -132,7 +132,7 @@ This project uses **JWT Authentication**. Use the following endpoints:
 ## 📜 API Documentation
 Swagger API Docs are available at:
 ```
-http://127.0.0.1:8000/api/schema/swagger-ui/
+http://127.0.0.1:8000/
 ```
 
 ## 🚀 Deployment
@@ -144,4 +144,3 @@ To deploy, make sure to:
 ## 📜 License
 This project is **MIT Licensed**.
 
-# Initial commit
